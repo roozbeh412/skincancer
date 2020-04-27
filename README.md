@@ -1,2 +1,17 @@
-# skincancer
+# Introduction
 This is the repository of a CNN model that can classify the severity of skin cancer lesion based on the photos taken from the spot. 
+Skin cancer is the most commonly diagnosed cancer in the United States with over a million cases being detected each year. Fortunately, early detection provides high odds of recovery. The traditional method of detection involves clinical screening, which is prone to false positives, followed by an invasive biopsy. While this provides for a high rate of detection, it is intrusive and costly. Artificial Intelligence for medical image analysis has proved effective in assisting in the diagnosis of many medical maladies, yet fine variations in the appearance of skin lesions has made applications to skin cancer detection difficult. We report that a Deep Convolutional Neural Network (CNN) trained over clinically labeled images (pixels) can accurately assist in the diagnosis of early stage skin cancers. Specifically, we analyze skin lesions using an advanced CNN and evaluate its performance on seven dermatologist certified clinical image types: Actinic keratoses and intraepithelial carcinoma (Bowen's disease), basal cell carcinoma, benign keratosis like lesions (solar lentigines, seborrheic keratoses, and lichen-planus like keratoses), dermatofibroma, melanoma, melanocytic nevi, and vascular lesions (angiomas, angiokeratomas, pyogenic granulomas, and hemorrhage). The model provides high levels of average accuracy, specificity, and sensitivity across these types: 93.68%, 95.67%, and 80.43%, respectively.
+
+# Dataset
+The dataset was compiled by the Medical University of Vienna and includes 10,015 images of pigmented skin lesions. Images were sampled equally from male and female patients with an average age of 51. Images were collected from different parts of the body (e.g., face, ear, and neck) and captured in resolutions ranging from 8 x 8 pixels to 450 x 600 pixels. Figure 1 displays a sample of the images used in the study. Images fall into seven different classifications:
+   Melanoma (mel): The most dangerous form of skin cancer and generally develops from pigment-containing cells known as melanocytes.
+   Basal Cell Carcinoma (bcc): This cancer affects the Basal cells which are responsible for the production of new skins. While it rarely metastasizes it does spread easily.
+ Actinic keratosis (akiec): This “pre-cancer” indicator appears as a scaly patch resulting from accumulated UV exposure
+   Benign Keratosis-Like lesions (bkl): A benign, painless skin disorder which is mostly associated with aging and exposure to UV light 
+   Vascular lesions (vasc): Common birthmarks that can be flat or raised 
+   Dermatofibroma (df): Superficial benign fibrous histiocytoma which primarily occur in women 
+   Melanocytic nevi (nv): Benign birthmarks and moles that resemble melanoma 
+  
+# Code
+The code is using a VGG16 archtecture of a CNN network. The code is in skin-cross.py file. A 10 fold cross validation is used to see all the instances of data at least once during testing.
+The general structure of this network is a 16-layer CNN that uses 3x3 filters with stride and pad of 1, along with 2x2 max pooling layers with stride of 2. The convolutional layers have 16, 64, 128, 256, 512 nodes successively. As the spatial size of the input volumes at each layer decrease, the result of the convolutional and pool layers, the depth of the volumes increases as the number of filters increases: doubling after each maxpool layer. The flattened layers consist of 1098, 4098, and 7 nodes. The final layer employs a SoftMax activation function.
